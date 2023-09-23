@@ -2,26 +2,43 @@
 
 ## Versions:
 
+### Version 0.3
+In this iteration:
+
+- Implemented the port range functionality in `functions.py` to intelligently handle port inputs, discerning between comma-separated lists and ranges. The resultant function returns a list of ports.
+- Transitioned from employing `optparse` to utilizing `argparse` for command-line argument parsing. This change enhances code comprehensibility and maintainability.
+- Introduced the `detected_encoding_decode` feature to decode responses from the target.
+Enacted a banner grabbing mechanism; however, it's important to note that this feature may not yield results for all ports or services.
+
 ### Version 0.2
-I made the decision to have a file called Functions to add the repetitive codes that will rarely be updated like display banner. I renamed the port scanner function to the scanner handler since it will be handling the different ports. I also reminder the connection function to be port_scanner since it will be functions where the connection will be initiated and tested.
+This version encompassed several notable enhancements:
 
-Updates:
-- Updated the **display banner** function to be called Snom
-- Added the **optparse** to take in the user target and ports
-- Added **common ports** in case the user did not input any ports
-- Added **threading** with max of 300 threads.
-- Added **verbose** mode (-v)
+- Created a dedicated Functions file to house repetitive code segments, such as the display banner function.
+- Renamed the port scanner function to "scanner handler" to better encapsulate its role in managing different ports.
+- Rebranded the connection function as "port_scanner," reflecting its function as the point of initiation and testing for connections.
 
-Thoughts:
-remove the connect_ex and change it to connect, if connect then further investigate to find version number or whatever, and else the port is closed but investigate to make sure its not filtered. This will slow down but efficient
+Notable Updates:
 
+- Refactored the "display banner" `function` to be referred to as "Snom."
+- Incorporated the usage of `optparse` to facilitate user input of target and port specifications.
+- Added a predefined set of "common ports" for cases where users do not provide specific port ranges.
+- Introduced multi-threading capabilities with a maximum of 300 threads.
+- Integrated a "verbose" mode (-v) for more extensive output.
+
+Considerations:
+Consider revising the utilization of `connect_ex`to `connect` for improved efficiency. Further investigation is required to ascertain version information or other pertinent details in cases of successful connections. In instances of failed connections, it is advisable to conduct additional checks to confirm whether the port is genuinely closed or merely filtered, albeit at the potential cost of reduced scan speed.
 
 ### Version 0.1
-Started working on the basic port scanner, it has the display banner function for aesthetics, the connection function where the socket connects with the port of the target and prints out if its opened or closed. The port_scanner function that focuses on looping the connection function for every port as an argument. Lastly main that calls the banner function and the port_scanner function.
+This initial version focused on establishing the foundational elements of the port scanner:
 
-Disadvantages:  
-- Very Slow
-- Checks ALL ports
-- No user Input or any argument modification
+- Included the "display banner" function for aesthetic purposes.
+- Introduced the "connection" function, responsible for establishing socket connections with the target ports and displaying whether they are open or closed.
+- Implemented the "port_scanner" function, designed to iterate through the various ports specified as arguments.
+- Concluded with the "main" function, which calls both the banner and port_scanner functions.
 
-Improvement for 0.2
+Limitations:
+- Demonstrated relatively slow performance.
+- Scanned all available ports.
+- Lacked user input capabilities and argument modifications.
+
+Anticipated Improvements for Version 0.2
